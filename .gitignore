@@ -6,3 +6,5 @@ dist/
 .amp/in/
 .amp/portals/
 guestbook.db
+.logs/myapp_access.log
+.logs/myapp_error.log
