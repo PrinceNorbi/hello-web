@@ -29,6 +29,16 @@ The guestbook and the `/ollama/` API share the same protections. Prompts are lim
 - **CSRF:** form posts from other sites are refused using the browser's `Sec-Fetch-Site` header.
 - **Rate limiting:** each client IP may post once per minute; extra attempts get `429` with `Retry-After` and a live countdown, and the draft is kept. Behind a reverse proxy, set uvicorn's `FORWARDED_ALLOW_IPS` to the proxy's address so the real client IP is used (only trusted proxies may set `X-Forwarded-For`).
 
+## Request logging
+
+Every `POST` request is logged as one JSON line with the client IP, path, response status, and the payload as received (first 2000 bytes), including rejected attempts:
+
+```
+2026-10-10 08:16:20,290 {"client": "127.0.0.1", "path": "/guestbook", "status": 303, "payload": {"name": "Ada", "message": "Hi!"}}
+```
+
+Lines go to stderr (your terminal, or the journal under systemd). Set `PAYLOAD_LOG_FILE=logs/payloads.log` to write them to a file instead (the `logs/` folder must exist; the file works with logrotate). Payloads are JSON-escaped, so user input cannot forge log lines. They contain visitors' names, messages, prompts, and IPs, so treat the log as personal data and keep it only as long as you need.
+
 ## Test
 
 ```sh

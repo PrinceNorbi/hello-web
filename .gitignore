@@ -8,3 +8,4 @@ dist/
 guestbook.db
 logs/myapp_access.log
 logs/myapp_error.log
+logs/payloads.log

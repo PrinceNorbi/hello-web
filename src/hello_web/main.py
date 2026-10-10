@@ -1,6 +1,10 @@
+import json
 import logging
+import logging.handlers
+import os
 from pathlib import Path
 from typing import Annotated
+from urllib.parse import parse_qsl
 
 import httpx
 from fastapi import FastAPI, Form, HTTPException, Request
@@ -13,6 +17,19 @@ from starlette.concurrency import run_in_threadpool
 from hello_web import guestbook, ollama
 
 logger = logging.getLogger(__name__)
+
+# One JSON line per POST request, written to stderr or to PAYLOAD_LOG_FILE when set.
+# WatchedFileHandler reopens the file after logrotate moves it.
+PAYLOAD_LOG_MAX = 2000  # bytes of each request body to keep
+payload_log = logging.getLogger("hello_web.payloads")
+payload_log.setLevel(logging.INFO)
+_payload_handler = (
+    logging.handlers.WatchedFileHandler(os.environ["PAYLOAD_LOG_FILE"])
+    if os.environ.get("PAYLOAD_LOG_FILE")
+    else logging.StreamHandler()
+)
+_payload_handler.setFormatter(logging.Formatter("%(asctime)s %(message)s"))
+payload_log.addHandler(_payload_handler)
 
 BASE_DIR = Path(__file__).parent
 
@@ -51,6 +68,36 @@ def client_ip(request: Request) -> str:
     # Behind a reverse proxy, uvicorn derives the client address from X-Forwarded-For only when the
     # proxy's IP is listed in FORWARDED_ALLOW_IPS, so clients cannot spoof it.
     return request.client.host if request.client else ""
+
+
+def parse_payload(body: bytes, content_type: str):
+    text = body[:PAYLOAD_LOG_MAX].decode("utf-8", errors="replace")
+    if content_type.startswith("application/x-www-form-urlencoded"):
+        return dict(parse_qsl(text, keep_blank_values=True))
+    if content_type.startswith("application/json"):
+        try:
+            return json.loads(text)
+        except ValueError:
+            pass
+    return text
+
+
+@app.middleware("http")
+async def log_post_payloads(request: Request, call_next):
+    if request.method != "POST":
+        return await call_next(request)
+    body = await request.body()  # Starlette replays the cached body to the route
+    response = await call_next(request)
+    entry = {
+        "client": client_ip(request),
+        "path": request.url.path,
+        "status": response.status_code,
+        "payload": parse_payload(body, request.headers.get("content-type", "")),
+    }
+    # json.dumps escapes newlines, control and non-ASCII characters, so user input cannot forge
+    # extra log lines or hide text from someone reading the log.
+    payload_log.info(json.dumps(entry))
+    return response
 
 
 @app.get("/", response_class=HTMLResponse)
