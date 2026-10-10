@@ -1,3 +1,4 @@
+import asyncio
 import json
 import logging
 from itertools import count
@@ -182,14 +183,24 @@ def test_ollama_api_reports_an_unreachable_model_without_details(monkeypatch) ->
     assert response.json() == {"detail": "The AI model is not available right now."}
 
 
-def test_post_payloads_are_logged_as_raw_single_line_json(caplog, model_prompts) -> None:
+def test_post_payloads_are_logged_as_raw_single_line_json_with_duration(caplog, monkeypatch) -> None:
     caplog.set_level(logging.INFO, logger="hello_web.payloads")
+
+    async def slow_model(prompt: str) -> str:
+        await asyncio.sleep(0.2)
+        return "ok"
+
+    monkeypatch.setattr(ollama, "generate", slow_model)
 
     sign("Eve\n2026-10-10 12:00:00 {\"forged\": true}", "", ip="9.9.9.9")
     ask("Szia\u202e!", ip="9.9.9.9")
 
     lines = [r.getMessage() for r in caplog.records if r.name == "hello_web.payloads"]
-    assert [json.loads(line) for line in lines] == [
+    entries = [json.loads(line) for line in lines]
+    guestbook_ms, ollama_ms = (entry.pop("duration_ms") for entry in entries)
+    assert ollama_ms >= 200  # includes the model's answer time
+    assert 0 <= guestbook_ms < ollama_ms
+    assert entries == [
         {
             "client": "9.9.9.9",
             "path": "/guestbook",

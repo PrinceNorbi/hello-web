@@ -31,10 +31,10 @@ The guestbook and the `/ollama/` API share the same protections. Prompts are lim
 
 ## Request logging
 
-Every `POST` request is logged as one JSON line with the client IP, path, response status, and the payload as received (first 2000 bytes), including rejected attempts:
+Every `POST` request is logged as one JSON line with the client IP, path, response status, how long the server took to handle it (`duration_ms`; for `/ollama/` this is mostly the model's answer time), and the payload as received (first 2000 bytes), including rejected attempts:
 
 ```
-2026-10-10 08:16:20,290 {"client": "127.0.0.1", "path": "/guestbook", "status": 303, "payload": {"name": "Ada", "message": "Hi!"}}
+2026-10-10 10:41:17,579 {"client": "127.0.0.1", "path": "/ollama/", "status": 200, "duration_ms": 6677.1, "payload": {"prompt": "Explain in three sentences why the sky is blue."}}
 ```
 
 Lines go to stderr (your terminal, or the journal under systemd). Set `PAYLOAD_LOG_FILE=logs/payloads.log` to write them to a file instead (the `logs/` folder must exist; the file works with logrotate). Payloads are JSON-escaped, so user input cannot forge log lines. They contain visitors' names, messages, prompts, and IPs, so treat the log as personal data and keep it only as long as you need.

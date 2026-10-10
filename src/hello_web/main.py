@@ -3,6 +3,7 @@ import logging
 import logging.handlers
 import os
 from pathlib import Path
+from time import perf_counter
 from typing import Annotated
 from urllib.parse import parse_qsl
 
@@ -86,12 +87,15 @@ def parse_payload(body: bytes, content_type: str):
 async def log_post_payloads(request: Request, call_next):
     if request.method != "POST":
         return await call_next(request)
+    started = perf_counter()
     body = await request.body()  # Starlette replays the cached body to the route
     response = await call_next(request)
     entry = {
         "client": client_ip(request),
         "path": request.url.path,
         "status": response.status_code,
+        # Server-side time to handle the request; for /ollama/ this is mostly the model's answer time.
+        "duration_ms": round((perf_counter() - started) * 1000, 1),
         "payload": parse_payload(body, request.headers.get("content-type", "")),
     }
     # json.dumps escapes newlines, control and non-ASCII characters, so user input cannot forge
