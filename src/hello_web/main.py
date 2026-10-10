@@ -1,12 +1,18 @@
+import logging
 from pathlib import Path
 from typing import Annotated
 
+import httpx
 from fastapi import FastAPI, Form, HTTPException, Request
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+from pydantic import BaseModel
+from starlette.concurrency import run_in_threadpool
 
-from hello_web import guestbook
+from hello_web import guestbook, ollama
+
+logger = logging.getLogger(__name__)
 
 BASE_DIR = Path(__file__).parent
 
@@ -19,7 +25,7 @@ templates = Jinja2Templates(directory=BASE_DIR / "templates")
 # Only our own static files may run as scripts; inline and injected scripts are blocked as a second
 # line of defense against XSS.
 CSP = (
-    "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; "
+    "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; connect-src 'self'; "
     "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
 )
 
@@ -35,9 +41,60 @@ async def security_headers(request: Request, call_next):
     return response
 
 
+def reject_cross_site(request: Request) -> None:
+    # Browsers label every request's origin; refuse submissions made from other sites (CSRF).
+    if request.headers.get("sec-fetch-site", "same-origin") not in ("same-origin", "none"):
+        raise HTTPException(status_code=403, detail="Cross-site submissions are not allowed.")
+
+
+def client_ip(request: Request) -> str:
+    # Behind a reverse proxy, uvicorn derives the client address from X-Forwarded-For only when the
+    # proxy's IP is listed in FORWARDED_ALLOW_IPS, so clients cannot spoof it.
+    return request.client.host if request.client else ""
+
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse(request, "index.html")
+
+
+@app.get("/ask", response_class=HTMLResponse)
+def ask_page(request: Request):
+    context = {"model": ollama.model(), "prompt_max": ollama.PROMPT_MAX}
+    return templates.TemplateResponse(request, "ask.html", context)
+
+
+class Prompt(BaseModel):
+    prompt: str
+
+
+@app.post("/ollama/")
+async def ask_ollama(request: Request, body: Prompt) -> dict[str, str]:
+    """Send one prompt to the local Ollama model; only this narrow call is exposed, not Ollama's API."""
+    reject_cross_site(request)
+    prompt = guestbook.clean_text(body.prompt, multiline=True)
+    if not prompt:
+        raise HTTPException(status_code=422, detail="Please write a prompt.")
+    if len(prompt) > ollama.PROMPT_MAX:
+        raise HTTPException(
+            status_code=422, detail=f"Prompt must be at most {ollama.PROMPT_MAX} characters."
+        )
+    # Its own key gives the AI a separate one-per-minute budget from the guestbook.
+    retry_after = await run_in_threadpool(guestbook.claim_slot, f"ollama:{client_ip(request)}")
+    if retry_after:
+        raise HTTPException(
+            status_code=429,
+            detail="You've reached the limit of one post per minute.",
+            headers={"Retry-After": str(retry_after)},
+        )
+    try:
+        return {"response": await ollama.generate(prompt)}
+    except httpx.TimeoutException:
+        raise HTTPException(status_code=504, detail="The AI model took too long to answer.")
+    except httpx.HTTPError as exc:
+        # Keep Ollama's details in the server log; clients only learn that it is unavailable.
+        logger.warning("Ollama request failed: %r", exc)
+        raise HTTPException(status_code=502, detail="The AI model is not available right now.")
 
 
 def render_guestbook(
@@ -66,16 +123,11 @@ def sign_guestbook(
     name: Annotated[str, Form()] = "",
     message: Annotated[str, Form()] = "",
 ):
-    # Browsers label every request's origin; refuse forms posted from other sites (CSRF).
-    if request.headers.get("sec-fetch-site", "same-origin") not in ("same-origin", "none"):
-        raise HTTPException(status_code=403, detail="Cross-site submissions are not allowed.")
+    reject_cross_site(request)
     name, message, errors = guestbook.validate(name, message)
     if errors:
         return render_guestbook(request, errors=errors, name=name, message=message, status_code=422)
-    # Behind a reverse proxy, uvicorn derives the client address from X-Forwarded-For only when the
-    # proxy's IP is listed in FORWARDED_ALLOW_IPS, so clients cannot spoof it.
-    client = request.client.host if request.client else ""
-    retry_after = guestbook.add_entry(client, name, message)
+    retry_after = guestbook.add_entry(client_ip(request), name, message)
     if retry_after:
         response = render_guestbook(
             request, retry_after=retry_after, name=name, message=message, status_code=429

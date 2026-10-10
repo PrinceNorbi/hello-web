@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Ask the AI{% endblock %}
+{% block main_class %}wide{% endblock %}
+{% block head %}<script type="module" src="/static/ask.js"></script>{% endblock %}
+{% block content %}
+<h1>Ask the AI 🤖</h1>
+<p class="muted"><a href="/">&larr; Home</a> &middot; Answered by the local Ollama model <code>{{ model }}</code></p>
+
+<form id="ask-form">
+  <p id="ask-status" role="alert" hidden></p>
+  <noscript><p class="errors">This page needs JavaScript to send your question.</p></noscript>
+  <label>Your question
+    <textarea name="prompt" rows="4" maxlength="{{ prompt_max }}" required></textarea>
+  </label>
+  <button type="submit">Ask</button>
+</form>
+
+<article id="answer" class="entry" aria-live="polite" hidden>
+  <header><strong>Answer</strong></header>
+  <p></p>
+</article>
+{% endblock %}

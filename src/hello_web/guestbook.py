@@ -15,7 +15,8 @@ POST_INTERVAL = 60  # seconds a client must wait between posts
 _DISALLOWED = re.compile(r"[\x00-\x08\x0b-\x1f\x7f-\x9f\u202a-\u202e\u2066-\u2069]")
 
 
-def _clean(value: str, *, multiline: bool) -> str:
+def clean_text(value: str, *, multiline: bool) -> str:
+    """Normalize user text and strip control and bidi-override characters."""
     value = unicodedata.normalize("NFC", value.replace("\r\n", "\n").replace("\r", "\n"))
     if not multiline:
         value = value.replace("\n", " ")
@@ -27,8 +28,8 @@ def validate(name: str, message: str) -> tuple[str, str, list[str]]:
 
     Text is stored as plain text, never as HTML; templates escape it on output.
     """
-    name = _clean(name, multiline=False)
-    message = _clean(message, multiline=True)
+    name = clean_text(name, multiline=False)
+    message = clean_text(message, multiline=True)
     errors = []
     if not name:
         errors.append("Please enter your name.")
@@ -54,6 +55,32 @@ def _connect() -> sqlite3.Connection:
     return conn
 
 
+def _claim(conn: sqlite3.Connection, client: str, now: float) -> int:
+    """Record a post by `client` unless it posted within the last POST_INTERVAL seconds.
+
+    Returns 0 when the post may go ahead, otherwise the seconds left until the client may post again.
+    """
+    # Forget clients whose wait is over, so the table only ever holds the last minute's posters.
+    conn.execute("DELETE FROM last_posts WHERE posted_at <= ?", (now - POST_INTERVAL,))
+    # The primary key makes claiming the slot atomic, even for concurrent requests.
+    claimed = conn.execute(
+        "INSERT INTO last_posts (client, posted_at) VALUES (?, ?) ON CONFLICT (client) DO NOTHING",
+        (client, now),
+    ).rowcount
+    if claimed:
+        return 0
+    (posted_at,) = conn.execute(
+        "SELECT posted_at FROM last_posts WHERE client = ?", (client,)
+    ).fetchone()
+    return max(1, math.ceil(posted_at + POST_INTERVAL - now))
+
+
+def claim_slot(client: str) -> int:
+    """Apply the one-post-per-interval limit to `client`; see `_claim` for the return value."""
+    with closing(_connect()) as conn, conn:
+        return _claim(conn, client, time())
+
+
 def add_entry(client: str, name: str, message: str) -> int:
     """Store the entry unless `client` posted within the last POST_INTERVAL seconds.
 
@@ -62,18 +89,8 @@ def add_entry(client: str, name: str, message: str) -> int:
     now = time()
     created_at = datetime.fromtimestamp(now, UTC).strftime("%Y-%m-%d %H:%M UTC")
     with closing(_connect()) as conn, conn:
-        # Forget clients whose wait is over, so the table only ever holds the last minute's posters.
-        conn.execute("DELETE FROM last_posts WHERE posted_at <= ?", (now - POST_INTERVAL,))
-        # The primary key makes claiming the slot atomic, even for concurrent requests.
-        claimed = conn.execute(
-            "INSERT INTO last_posts (client, posted_at) VALUES (?, ?) ON CONFLICT (client) DO NOTHING",
-            (client, now),
-        ).rowcount
-        if not claimed:
-            (posted_at,) = conn.execute(
-                "SELECT posted_at FROM last_posts WHERE client = ?", (client,)
-            ).fetchone()
-            return max(1, math.ceil(posted_at + POST_INTERVAL - now))
+        if retry_after := _claim(conn, client, now):
+            return retry_after
         # Always bind values as parameters; never format user input into SQL.
         conn.execute(
             "INSERT INTO entries (name, message, created_at) VALUES (?, ?, ?)",

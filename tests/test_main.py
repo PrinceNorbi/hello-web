@@ -3,7 +3,7 @@ from itertools import count
 import pytest
 from fastapi.testclient import TestClient
 
-from hello_web import guestbook
+from hello_web import guestbook, ollama
 from hello_web.main import app
 
 client = TestClient(app)
@@ -20,6 +20,26 @@ def sign(name: str, message: str, ip: str | None = None, **headers: str):
     return TestClient(app, client=(ip or next(_ips), 50000)).post(
         "/guestbook", data={"name": name, "message": message}, headers=headers, follow_redirects=False
     )
+
+
+def ask(prompt: str, ip: str | None = None, **headers: str):
+    """Send a prompt to the Ollama API; each call comes from a fresh client IP unless `ip` is given."""
+    return TestClient(app, client=(ip or next(_ips), 50000)).post(
+        "/ollama/", json={"prompt": prompt}, headers=headers
+    )
+
+
+@pytest.fixture
+def model_prompts(monkeypatch) -> list[str]:
+    """Replace the Ollama call with an echo and return the prompts it received."""
+    prompts = []
+
+    async def generate(prompt: str) -> str:
+        prompts.append(prompt)
+        return f"echo: {prompt}"
+
+    monkeypatch.setattr(ollama, "generate", generate)
+    return prompts
 
 
 def test_index_serves_hello_page() -> None:
@@ -118,3 +138,38 @@ def test_the_wait_counts_down_and_ends_after_exactly_one_minute(monkeypatch) -> 
 
     now += 0.5
     assert sign("Ann", "on time", ip="1.2.3.4").status_code == 303
+
+
+def test_ollama_api_sends_the_cleaned_prompt_and_returns_the_answer(model_prompts) -> None:
+    response = ask("  Hi\u202e there\x00\r\n ")
+
+    assert response.status_code == 200
+    assert response.json() == {"response": "echo: Hi there"}
+    assert model_prompts == ["Hi there"]
+
+
+def test_ollama_api_rejects_invalid_prompts_before_using_the_limit(model_prompts) -> None:
+    assert ask(" \n\u202e", ip="1.2.3.4").json() == {"detail": "Please write a prompt."}
+    assert ask("x" * 1001, ip="1.2.3.4").status_code == 422
+    assert ask("hi", ip="1.2.3.4", **{"Sec-Fetch-Site": "cross-site"}).status_code == 403
+    assert ask("x" * 1000, ip="1.2.3.4").status_code == 200
+    assert model_prompts == ["x" * 1000]
+
+
+def test_ollama_api_allows_one_prompt_per_minute_separately_from_the_guestbook(model_prompts) -> None:
+    assert sign("Ann", "hello", ip="1.2.3.4").status_code == 303
+    assert ask("first", ip="1.2.3.4").status_code == 200
+
+    response = ask("second", ip="1.2.3.4")
+    assert response.status_code == 429
+    assert response.headers["retry-after"] == "60"
+    assert response.json() == {"detail": "You've reached the limit of one post per minute."}
+    assert model_prompts == ["first"]
+
+
+def test_ollama_api_reports_an_unreachable_model_without_details(monkeypatch) -> None:
+    monkeypatch.setenv("OLLAMA_URL", "http://127.0.0.1:9")
+
+    response = ask("hello")
+    assert response.status_code == 502
+    assert response.json() == {"detail": "The AI model is not available right now."}
