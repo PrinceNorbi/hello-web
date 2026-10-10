@@ -1,0 +1,45 @@
+:root {
+  color-scheme: light dark;
+  --accent: #6366f1;
+  --gradient: linear-gradient(135deg, #6366f1, #ec4899);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0; min-height: 100vh; padding: 2rem 1rem;
+  display: grid; place-items: center;
+  font-family: system-ui, sans-serif;
+  background: var(--gradient) fixed;
+}
+
+main {
+  padding: 3rem 4rem; border-radius: 1.5rem; text-align: center;
+  background: Canvas; box-shadow: 0 20px 50px rgb(0 0 0 / 0.25);
+}
+main.wide { width: min(40rem, 100%); padding: 2.5rem; text-align: left; }
+
+h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 6vw, 3.5rem); }
+.muted { margin: 0; opacity: 0.7; }
+a { color: var(--accent); }
+
+form { display: grid; gap: 1rem; margin: 2rem 0; }
+label { display: grid; gap: 0.35rem; font-weight: 600; }
+input, textarea {
+  font: inherit; font-weight: normal; padding: 0.6rem 0.75rem;
+  border: 1px solid color-mix(in srgb, CanvasText 25%, transparent); border-radius: 0.6rem;
+  background: Canvas; color: CanvasText; resize: vertical;
+}
+input:focus, textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+button {
+  justify-self: start; padding: 0.6rem 1.5rem; border: 0; border-radius: 0.6rem;
+  font: inherit; font-weight: 600; color: white; background: var(--gradient); cursor: pointer;
+}
+.errors { margin: 0; padding: 0.75rem 1rem 0.75rem 2rem; border-radius: 0.6rem; color: #991b1b; background: #fee2e2; }
+
+.entries { display: grid; gap: 0.75rem; }
+.entry { padding: 1rem 1.25rem; border-radius: 0.9rem; background: color-mix(in srgb, var(--accent) 10%, Canvas); }
+.entry header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.entry strong, .entry p { overflow-wrap: anywhere; }
+.entry time { flex-shrink: 0; font-size: 0.85rem; opacity: 0.6; }
+.entry p { margin: 0.4rem 0 0; white-space: pre-wrap; }

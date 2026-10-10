@@ -1,42 +1,74 @@
-from fastapi import FastAPI
-from fastapi.responses import HTMLResponse
+from pathlib import Path
+from typing import Annotated
+
+from fastapi import FastAPI, Form, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.staticfiles import StaticFiles
+from fastapi.templating import Jinja2Templates
+
+from hello_web import guestbook
+
+BASE_DIR = Path(__file__).parent
 
 app = FastAPI(title="Hello Web")
+app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
+# Jinja2Templates autoescapes .html templates, so user text is always rendered inert.
+templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
-PAGE = """<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello, World!</title>
-  <style>
-    :root { color-scheme: light dark; }
-    body {
-      margin: 0; min-height: 100vh; display: grid; place-items: center;
-      font-family: system-ui, sans-serif;
-      background: linear-gradient(135deg, #6366f1, #ec4899);
-    }
-    main {
-      padding: 3rem 4rem; border-radius: 1.5rem; text-align: center;
-      background: Canvas; box-shadow: 0 20px 50px rgb(0 0 0 / 0.25);
-    }
-    h1 { margin: 0 0 0.5rem; font-size: clamp(2rem, 6vw, 3.5rem); }
-    p { margin: 0; opacity: 0.7; }
-    a { color: #6366f1; }
-  </style>
-</head>
-<body>
-  <main>
-    <h1>Hello, World! 👋</h1>
-    <p>Served by FastAPI &middot; <a href="/docs">API docs</a></p>
-  </main>
-</body>
-</html>"""
+# Our pages need no JavaScript, so forbid all scripts as a second line of defense against XSS.
+CSP = (
+    "default-src 'none'; style-src 'self'; img-src 'self'; "
+    "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
+)
+
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "same-origin"
+    # Swagger UI and ReDoc load scripts from a CDN, so they keep FastAPI's defaults.
+    if not request.url.path.startswith(("/docs", "/redoc")):
+        response.headers["Content-Security-Policy"] = CSP
+    return response
 
 
 @app.get("/", response_class=HTMLResponse)
-def index() -> str:
-    return PAGE
+def index(request: Request):
+    return templates.TemplateResponse(request, "index.html")
+
+
+def render_guestbook(request: Request, *, errors=(), name="", message="", status_code=200):
+    context = {
+        "entries": guestbook.list_entries(),
+        "errors": errors,
+        "name": name,
+        "message": message,
+        "name_max": guestbook.NAME_MAX,
+        "message_max": guestbook.MESSAGE_MAX,
+    }
+    return templates.TemplateResponse(request, "guestbook.html", context, status_code=status_code)
+
+
+@app.get("/guestbook", response_class=HTMLResponse)
+def guestbook_page(request: Request):
+    return render_guestbook(request)
+
+
+@app.post("/guestbook", response_class=HTMLResponse)
+def sign_guestbook(
+    request: Request,
+    name: Annotated[str, Form()] = "",
+    message: Annotated[str, Form()] = "",
+):
+    # Browsers label every request's origin; refuse forms posted from other sites (CSRF).
+    if request.headers.get("sec-fetch-site", "same-origin") not in ("same-origin", "none"):
+        raise HTTPException(status_code=403, detail="Cross-site submissions are not allowed.")
+    name, message, errors = guestbook.validate(name, message)
+    if errors:
+        return render_guestbook(request, errors=errors, name=name, message=message, status_code=422)
+    guestbook.add_entry(name, message)
+    return RedirectResponse("/guestbook", status_code=303)
 
 
 @app.get("/api/hello")
