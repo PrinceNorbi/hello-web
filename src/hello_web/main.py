@@ -8,7 +8,7 @@ from urllib.parse import parse_qsl
 
 import httpx
 from fastapi import FastAPI, Form, HTTPException, Request
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import FileResponse, HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel
@@ -98,6 +98,12 @@ async def log_post_payloads(request: Request, call_next):
     # extra log lines or hide text from someone reading the log.
     payload_log.info(json.dumps(entry))
     return response
+
+
+@app.get("/favicon.ico", include_in_schema=False)
+def favicon():
+    # Browsers request /favicon.ico on their own, even for pages without a <link rel="icon">.
+    return FileResponse(BASE_DIR / "static" / "favicon.ico", media_type="image/x-icon")
 
 
 @app.get("/", response_class=HTMLResponse)

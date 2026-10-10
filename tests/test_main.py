@@ -49,6 +49,11 @@ def test_index_serves_hello_page() -> None:
     assert response.status_code == 200
     assert "Hello, World!" in response.text
 
+    favicon = client.get("/favicon.ico")
+    assert favicon.status_code == 200
+    assert favicon.headers["content-type"] == "image/x-icon"
+    assert favicon.content.startswith(b"\x00\x00\x01\x00")  # ICO file signature
+
 
 def test_hello_api_greets_by_name() -> None:
     assert client.get("/api/hello").json() == {"message": "Hello, World!"}
