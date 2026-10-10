@@ -1,6 +1,8 @@
+#from flask import Flask
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 
+#app = Flask(__name__)
 app = FastAPI(title="Hello Web")
 
 PAGE = """<!doctype html>

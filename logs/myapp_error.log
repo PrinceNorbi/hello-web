@@ -1,0 +1,254 @@
+[Sat Oct 10 08:14:38.755402 2026] [ssl:warn] [pid 14097:tid 14097] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:14:38.758998 2026] [ssl:warn] [pid 14098:tid 14098] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:14:41.759426 2026] [core:crit] [pid 14106:tid 14114] (13)Permission denied: [client 172.24.16.1:57283] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable, referer: https://www.google.com/
+[Sat Oct 10 08:14:43.145370 2026] [core:crit] [pid 14106:tid 14118] (13)Permission denied: [client 172.24.16.1:57283] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable, referer: https://www.google.com/
+[Sat Oct 10 08:14:45.445819 2026] [core:crit] [pid 14106:tid 14126] (13)Permission denied: [client 172.24.16.1:54498] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable
+[Sat Oct 10 08:17:51.005295 2026] [ssl:warn] [pid 14642:tid 14642] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:17:51.007942 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:17:53.336211 2026] [core:crit] [pid 14648:tid 14660] (13)Permission denied: [client 172.24.16.1:50422] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable, referer: https://www.google.com/
+[Sat Oct 10 08:17:54.305591 2026] [core:crit] [pid 14648:tid 14663] (13)Permission denied: [client 172.24.16.1:50422] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable, referer: https://www.google.com/
+[Sat Oct 10 08:17:55.355848 2026] [core:crit] [pid 14648:tid 14677] (13)Permission denied: [client 172.24.16.1:50060] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable
+[Sat Oct 10 08:24:40.375836 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:24:43.233350 2026] [core:crit] [pid 15760:tid 15774] (13)Permission denied: [client 172.24.16.1:65421] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable
+[Sat Oct 10 08:24:43.689372 2026] [core:crit] [pid 15760:tid 15777] (13)Permission denied: [client 172.24.16.1:65421] AH00529: /home/norbeey/.htaccess pcfg_openfile: unable to check htaccess file, ensure it is readable and that '/home/norbeey/' is executable
+[Sat Oct 10 08:25:13.544131 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:25:15.888096 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:59168] mod_wsgi (pid=15940): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:15.888117 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:59168] mod_wsgi (pid=15940): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:15.901326 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:59168] Traceback (most recent call last):
+[Sat Oct 10 08:25:15.901434 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:59168]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:25:15.901437 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:59168]     from fastapi import FastAPI
+[Sat Oct 10 08:25:15.901445 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:59168] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:25:17.360429 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:53494] mod_wsgi (pid=15940): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:17.360460 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:53494] mod_wsgi (pid=15940): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:17.360523 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:53494] Traceback (most recent call last):
+[Sat Oct 10 08:25:17.360611 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:53494]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:25:17.360613 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:53494]     from fastapi import FastAPI
+[Sat Oct 10 08:25:17.360621 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:53494] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:25:17.756101 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:52286] mod_wsgi (pid=15940): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:17.756124 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:52286] mod_wsgi (pid=15940): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:17.756173 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:52286] Traceback (most recent call last):
+[Sat Oct 10 08:25:17.756247 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:52286]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:25:17.756248 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:52286]     from fastapi import FastAPI
+[Sat Oct 10 08:25:17.756255 2026] [wsgi:error] [pid 15940:tid 15946] [remote 172.24.16.1:52286] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:25:18.022967 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:51669] mod_wsgi (pid=15940): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:18.022994 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:51669] mod_wsgi (pid=15940): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:25:18.023041 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:51669] Traceback (most recent call last):
+[Sat Oct 10 08:25:18.023119 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:51669]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:25:18.023120 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:51669]     from fastapi import FastAPI
+[Sat Oct 10 08:25:18.023127 2026] [wsgi:error] [pid 15940:tid 15975] [remote 172.24.16.1:51669] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:00.878853 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:26:02.368431 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:63602] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:02.368467 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:63602] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:02.383996 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:63602] Traceback (most recent call last):
+[Sat Oct 10 08:26:02.384113 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:63602]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:02.384116 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:63602]     from fastapi import FastAPI
+[Sat Oct 10 08:26:02.384124 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:63602] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:02.945156 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:52299] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:02.945189 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:52299] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:02.945261 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:52299] Traceback (most recent call last):
+[Sat Oct 10 08:26:02.945371 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:52299]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:02.945373 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:52299]     from fastapi import FastAPI
+[Sat Oct 10 08:26:02.945383 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:52299] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:04.454603 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:64346] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:04.454628 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:64346] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:04.454697 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:64346] Traceback (most recent call last):
+[Sat Oct 10 08:26:04.454779 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:64346]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:04.454781 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:64346]     from fastapi import FastAPI
+[Sat Oct 10 08:26:04.454787 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:64346] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:35.693359 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62071] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:35.693401 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62071] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:35.693480 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62071] Traceback (most recent call last):
+[Sat Oct 10 08:26:35.693570 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62071]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:35.693572 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62071]     from fastapi import FastAPI
+[Sat Oct 10 08:26:35.693580 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62071] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:35.997229 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:65526] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:35.997267 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:65526] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:35.997318 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:65526] Traceback (most recent call last):
+[Sat Oct 10 08:26:35.997395 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:65526]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:35.997397 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:65526]     from fastapi import FastAPI
+[Sat Oct 10 08:26:35.997404 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:65526] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:36.201383 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:63197] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:36.201460 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:63197] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:36.201516 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:63197] Traceback (most recent call last):
+[Sat Oct 10 08:26:36.201598 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:63197]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:36.201599 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:63197]     from fastapi import FastAPI
+[Sat Oct 10 08:26:36.201606 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:63197] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:55.590449 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:49269] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:55.590476 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:49269] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:55.590524 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:49269] Traceback (most recent call last):
+[Sat Oct 10 08:26:55.590597 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:49269]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:55.590599 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:49269]     from fastapi import FastAPI
+[Sat Oct 10 08:26:55.590605 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:49269] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:56.270900 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:60344] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:56.270928 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:60344] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:56.270982 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:60344] Traceback (most recent call last):
+[Sat Oct 10 08:26:56.271063 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:60344]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:56.271065 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:60344]     from fastapi import FastAPI
+[Sat Oct 10 08:26:56.271074 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:60344] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:56.476933 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:60052] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:56.476963 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:60052] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:56.477022 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:60052] Traceback (most recent call last):
+[Sat Oct 10 08:26:56.477104 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:60052]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:56.477105 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:60052]     from fastapi import FastAPI
+[Sat Oct 10 08:26:56.477112 2026] [wsgi:error] [pid 16687:tid 16693] [remote 172.24.16.1:60052] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:26:56.642043 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62848] mod_wsgi (pid=16687): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:56.642069 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62848] mod_wsgi (pid=16687): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:26:56.642130 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62848] Traceback (most recent call last):
+[Sat Oct 10 08:26:56.642209 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62848]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:26:56.642211 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62848]     from fastapi import FastAPI
+[Sat Oct 10 08:26:56.642217 2026] [wsgi:error] [pid 16687:tid 16707] [remote 172.24.16.1:62848] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:27:21.406982 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:27:22.533461 2026] [wsgi:error] [pid 16907:tid 16913] [remote 172.24.16.1:61027] mod_wsgi (pid=16907): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:27:22.533484 2026] [wsgi:error] [pid 16907:tid 16913] [remote 172.24.16.1:61027] mod_wsgi (pid=16907): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:27:22.546727 2026] [wsgi:error] [pid 16907:tid 16913] [remote 172.24.16.1:61027] Traceback (most recent call last):
+[Sat Oct 10 08:27:22.546823 2026] [wsgi:error] [pid 16907:tid 16913] [remote 172.24.16.1:61027]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:27:22.546826 2026] [wsgi:error] [pid 16907:tid 16913] [remote 172.24.16.1:61027]     from fastapi import FastAPI
+[Sat Oct 10 08:27:22.546834 2026] [wsgi:error] [pid 16907:tid 16913] [remote 172.24.16.1:61027] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:30:11.895461 2026] [ssl:info] [pid 14643:tid 14643] AH01914: Configuring server localhost:443 for SSL protocol
+[Sat Oct 10 08:30:11.895825 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:30:11.895827 2026] [ssl:info] [pid 14643:tid 14643] AH02568: Certificate and private key localhost:443:0 configured from /etc/letsencrypt/live/ad-astra.hu/fullchain.pem and /etc/letsencrypt/live/ad-astra.hu/privkey.pem
+[Sat Oct 10 08:30:11.902173 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Attach interpreter ''.
+[Sat Oct 10 08:30:11.904283 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Adding '/home/norbeey/hello-web/src/hello_web' to path.
+[Sat Oct 10 08:30:11.904606 2026] [wsgi:debug] [pid 17130:tid 17136] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 0 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904646 2026] [wsgi:debug] [pid 17130:tid 17137] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 1 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904667 2026] [wsgi:debug] [pid 17130:tid 17138] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 2 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904694 2026] [wsgi:debug] [pid 17130:tid 17139] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 3 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904721 2026] [wsgi:debug] [pid 17130:tid 17140] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 4 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904743 2026] [wsgi:debug] [pid 17130:tid 17141] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 5 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904771 2026] [wsgi:debug] [pid 17130:tid 17142] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 6 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904807 2026] [wsgi:debug] [pid 17130:tid 17143] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 7 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904822 2026] [wsgi:debug] [pid 17130:tid 17144] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 8 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904850 2026] [wsgi:debug] [pid 17130:tid 17145] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 9 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904873 2026] [wsgi:debug] [pid 17130:tid 17146] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 10 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904901 2026] [wsgi:debug] [pid 17130:tid 17147] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 11 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904923 2026] [wsgi:debug] [pid 17130:tid 17148] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 12 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904957 2026] [wsgi:debug] [pid 17130:tid 17149] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 13 in daemon process 'myapp'.
+[Sat Oct 10 08:30:11.904983 2026] [wsgi:debug] [pid 17130:tid 17150] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17130): Started thread 14 in daemon process 'myapp'.
+[Sat Oct 10 08:30:17.636090 2026] [ssl:info] [pid 17133:tid 17152] [client 172.24.16.1:52288] AH01964: Connection to child 320 established (server localhost:443)
+[Sat Oct 10 08:30:17.636203 2026] [ssl:info] [pid 17132:tid 17172] [client 172.24.16.1:58898] AH01964: Connection to child 256 established (server localhost:443)
+[Sat Oct 10 08:30:17.637771 2026] [ssl:info] [pid 17132:tid 17172] [client 172.24.16.1:58898] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:30:17.637789 2026] [ssl:info] [pid 17132:tid 17172] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:30:17.637791 2026] [ssl:info] [pid 17132:tid 17172] [client 172.24.16.1:58898] AH01998: Connection closed to child 256 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:30:17.637892 2026] [ssl:info] [pid 17133:tid 17152] [client 172.24.16.1:52288] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:30:17.637902 2026] [ssl:info] [pid 17133:tid 17152] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:30:17.637904 2026] [ssl:info] [pid 17133:tid 17152] [client 172.24.16.1:52288] AH01998: Connection closed to child 320 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:30:17.639120 2026] [ssl:info] [pid 17132:tid 17175] [client 172.24.16.1:60823] AH01964: Connection to child 257 established (server localhost:443)
+[Sat Oct 10 08:30:17.647092 2026] [wsgi:info] [pid 17130:tid 17136] mod_wsgi (pid=17130): Create interpreter 'localhost:8443|'.
+[Sat Oct 10 08:30:17.649574 2026] [wsgi:info] [pid 17130:tid 17136] mod_wsgi (pid=17130): Adding '/home/norbeey/hello-web/src/hello_web' to path.
+[Sat Oct 10 08:30:17.649766 2026] [wsgi:info] [pid 17130:tid 17136] [remote 172.24.16.1:60823] mod_wsgi (pid=17130, process='myapp', application='localhost:8443|'): Loading Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:30:17.650070 2026] [wsgi:error] [pid 17130:tid 17136] [remote 172.24.16.1:60823] mod_wsgi (pid=17130): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:30:17.650083 2026] [wsgi:error] [pid 17130:tid 17136] [remote 172.24.16.1:60823] mod_wsgi (pid=17130): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:30:17.665924 2026] [wsgi:error] [pid 17130:tid 17136] [remote 172.24.16.1:60823] Traceback (most recent call last):
+[Sat Oct 10 08:30:17.666037 2026] [wsgi:error] [pid 17130:tid 17136] [remote 172.24.16.1:60823]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:30:17.666039 2026] [wsgi:error] [pid 17130:tid 17136] [remote 172.24.16.1:60823]     from fastapi import FastAPI
+[Sat Oct 10 08:30:17.666047 2026] [wsgi:error] [pid 17130:tid 17136] [remote 172.24.16.1:60823] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:35:51.645336 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Shutdown requested 'myapp'.
+[Sat Oct 10 08:35:51.645639 2026] [wsgi:debug] [pid 17130:tid 17136] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 0 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645688 2026] [wsgi:debug] [pid 17130:tid 17149] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 13 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645723 2026] [wsgi:debug] [pid 17130:tid 17147] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 11 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645724 2026] [wsgi:debug] [pid 17130:tid 17143] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 7 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645728 2026] [wsgi:debug] [pid 17130:tid 17142] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 6 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645728 2026] [wsgi:debug] [pid 17130:tid 17148] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 12 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645744 2026] [wsgi:debug] [pid 17130:tid 17146] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 10 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645747 2026] [wsgi:debug] [pid 17130:tid 17144] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 8 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645741 2026] [wsgi:debug] [pid 17130:tid 17140] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 4 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645768 2026] [wsgi:debug] [pid 17130:tid 17145] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 9 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645770 2026] [wsgi:debug] [pid 17130:tid 17138] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 2 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645770 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Stopping process 'myapp'.
+[Sat Oct 10 08:35:51.645777 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Destroying interpreters.
+[Sat Oct 10 08:35:51.645781 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Destroy interpreter 'localhost:8443|'.
+[Sat Oct 10 08:35:51.645795 2026] [wsgi:debug] [pid 17130:tid 17139] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 3 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645797 2026] [wsgi:debug] [pid 17130:tid 17137] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 1 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645799 2026] [wsgi:debug] [pid 17130:tid 17141] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17130): Exiting thread 5 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.645816 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): End interpreter 'localhost:8443|'.
+[Sat Oct 10 08:35:51.649841 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Cleanup interpreter ''.
+[Sat Oct 10 08:35:51.649876 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Terminating Python.
+[Sat Oct 10 08:35:51.652196 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Python has shutdown.
+[Sat Oct 10 08:35:51.652206 2026] [wsgi:info] [pid 17130:tid 17130] mod_wsgi (pid=17130): Exiting process 'myapp'.
+[Sat Oct 10 08:35:51.694907 2026] [ssl:info] [pid 14643:tid 14643] AH01914: Configuring server localhost:443 for SSL protocol
+[Sat Oct 10 08:35:51.695897 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
+[Sat Oct 10 08:35:51.695901 2026] [ssl:info] [pid 14643:tid 14643] AH02568: Certificate and private key localhost:443:0 configured from /etc/letsencrypt/live/ad-astra.hu/fullchain.pem and /etc/letsencrypt/live/ad-astra.hu/privkey.pem
+[Sat Oct 10 08:35:51.702687 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Attach interpreter ''.
+[Sat Oct 10 08:35:51.705013 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Adding '/home/norbeey/hello-web/src/hello_web' to path.
+[Sat Oct 10 08:35:51.705248 2026] [wsgi:debug] [pid 17430:tid 17436] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 0 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705301 2026] [wsgi:debug] [pid 17430:tid 17437] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 1 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705353 2026] [wsgi:debug] [pid 17430:tid 17438] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 2 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705382 2026] [wsgi:debug] [pid 17430:tid 17439] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 3 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705409 2026] [wsgi:debug] [pid 17430:tid 17440] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 4 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705438 2026] [wsgi:debug] [pid 17430:tid 17441] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 5 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705509 2026] [wsgi:debug] [pid 17430:tid 17442] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 6 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705539 2026] [wsgi:debug] [pid 17430:tid 17444] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 7 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705556 2026] [wsgi:debug] [pid 17430:tid 17446] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 8 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705585 2026] [wsgi:debug] [pid 17430:tid 17448] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 9 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705620 2026] [wsgi:debug] [pid 17430:tid 17449] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 10 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705661 2026] [wsgi:debug] [pid 17430:tid 17452] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 11 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705684 2026] [wsgi:debug] [pid 17430:tid 17454] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 12 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705729 2026] [wsgi:debug] [pid 17430:tid 17456] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 13 in daemon process 'myapp'.
+[Sat Oct 10 08:35:51.705762 2026] [wsgi:debug] [pid 17430:tid 17459] src/server/mod_wsgi.c(9180): mod_wsgi (pid=17430): Started thread 14 in daemon process 'myapp'.
+[Sat Oct 10 08:35:54.329253 2026] [ssl:info] [pid 17432:tid 17465] [client 172.24.16.1:64316] AH01964: Connection to child 256 established (server localhost:443)
+[Sat Oct 10 08:35:54.329253 2026] [ssl:info] [pid 17431:tid 17445] [client 172.24.16.1:64315] AH01964: Connection to child 192 established (server localhost:443)
+[Sat Oct 10 08:35:54.330991 2026] [ssl:info] [pid 17432:tid 17465] [client 172.24.16.1:64316] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:35:54.330993 2026] [ssl:info] [pid 17431:tid 17445] [client 172.24.16.1:64315] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:35:54.331031 2026] [ssl:info] [pid 17431:tid 17445] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:35:54.331032 2026] [ssl:info] [pid 17432:tid 17465] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:35:54.331034 2026] [ssl:info] [pid 17431:tid 17445] [client 172.24.16.1:64315] AH01998: Connection closed to child 192 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:35:54.331035 2026] [ssl:info] [pid 17432:tid 17465] [client 172.24.16.1:64316] AH01998: Connection closed to child 256 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:35:54.333073 2026] [ssl:info] [pid 17431:tid 17447] [client 172.24.16.1:65117] AH01964: Connection to child 193 established (server localhost:443)
+[Sat Oct 10 08:35:54.339707 2026] [wsgi:info] [pid 17430:tid 17436] mod_wsgi (pid=17430): Create interpreter 'localhost:8443|'.
+[Sat Oct 10 08:35:54.341874 2026] [wsgi:info] [pid 17430:tid 17436] mod_wsgi (pid=17430): Adding '/home/norbeey/hello-web/src/hello_web' to path.
+[Sat Oct 10 08:35:54.342013 2026] [wsgi:info] [pid 17430:tid 17436] [remote 172.24.16.1:65117] mod_wsgi (pid=17430, process='myapp', application='localhost:8443|'): Loading Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:35:54.342278 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:65117] mod_wsgi (pid=17430): Failed to exec Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:35:54.342286 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:65117] mod_wsgi (pid=17430): Exception occurred processing WSGI script '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:35:54.355888 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:65117] Traceback (most recent call last):
+[Sat Oct 10 08:35:54.356011 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:65117]   File "/home/norbeey/hello-web/src/hello_web/main.py", line 1, in <module>
+[Sat Oct 10 08:35:54.356013 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:65117]     from fastapi import FastAPI
+[Sat Oct 10 08:35:54.356022 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:65117] ModuleNotFoundError: No module named 'fastapi'
+[Sat Oct 10 08:40:41.282953 2026] [ssl:info] [pid 17432:tid 17467] [client 172.24.16.1:60533] AH01964: Connection to child 257 established (server localhost:443)
+[Sat Oct 10 08:40:41.283013 2026] [ssl:info] [pid 17433:tid 17462] [client 172.24.16.1:60534] AH01964: Connection to child 320 established (server localhost:443)
+[Sat Oct 10 08:40:41.284303 2026] [ssl:info] [pid 17432:tid 17467] [client 172.24.16.1:60533] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:40:41.284315 2026] [ssl:info] [pid 17432:tid 17467] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:40:41.284317 2026] [ssl:info] [pid 17432:tid 17467] [client 172.24.16.1:60533] AH01998: Connection closed to child 257 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:40:41.284464 2026] [ssl:info] [pid 17433:tid 17462] [client 172.24.16.1:60534] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:40:41.284472 2026] [ssl:info] [pid 17433:tid 17462] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:40:41.284474 2026] [ssl:info] [pid 17433:tid 17462] [client 172.24.16.1:60534] AH01998: Connection closed to child 320 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:40:41.285333 2026] [ssl:info] [pid 17432:tid 17470] [client 172.24.16.1:58099] AH01964: Connection to child 258 established (server localhost:443)
+[Sat Oct 10 08:40:41.287187 2026] [wsgi:info] [pid 17430:tid 17459] [remote 172.24.16.1:58099] mod_wsgi (pid=17430, process='myapp', application='localhost:8443|'): Loading Python script file '/home/norbeey/hello-web/src/hello_web/main.py'.
+[Sat Oct 10 08:40:41.434468 2026] [wsgi:error] [pid 17430:tid 17459] [remote 172.24.16.1:58099] mod_wsgi (pid=17430): Target WSGI script '/home/norbeey/hello-web/src/hello_web/main.py' does not contain WSGI application 'application'.
+[Sat Oct 10 08:40:53.749211 2026] [ssl:info] [pid 17432:tid 17472] [client 172.24.16.1:64681] AH01964: Connection to child 260 established (server localhost:443)
+[Sat Oct 10 08:40:53.749392 2026] [ssl:info] [pid 17432:tid 17472] [client 172.24.16.1:64681] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:40:53.749403 2026] [ssl:info] [pid 17432:tid 17472] SSL Library Error: error:0A000102:SSL routines::unsupported protocol
+[Sat Oct 10 08:40:53.749405 2026] [ssl:info] [pid 17432:tid 17472] [client 172.24.16.1:64681] AH01998: Connection closed to child 260 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:41:11.378124 2026] [ssl:info] [pid 17433:tid 17463] [client 172.24.16.1:55707] AH01964: Connection to child 321 established (server localhost:443)
+[Sat Oct 10 08:41:11.378179 2026] [ssl:info] [pid 17431:tid 17451] [client 172.24.16.1:55708] AH01964: Connection to child 195 established (server localhost:443)
+[Sat Oct 10 08:41:11.379840 2026] [ssl:info] [pid 17433:tid 17463] [client 172.24.16.1:55707] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:41:11.379874 2026] [ssl:info] [pid 17433:tid 17463] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:41:11.379877 2026] [ssl:info] [pid 17433:tid 17463] [client 172.24.16.1:55707] AH01998: Connection closed to child 321 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:41:11.380058 2026] [ssl:info] [pid 17431:tid 17451] [client 172.24.16.1:55708] AH02008: SSL library error 1 in handshake (server localhost:443)
+[Sat Oct 10 08:41:11.380067 2026] [ssl:info] [pid 17431:tid 17451] SSL Library Error: error:0A000416:SSL routines::tls alert certificate unknown (SSL alert number 46)
+[Sat Oct 10 08:41:11.380069 2026] [ssl:info] [pid 17431:tid 17451] [client 172.24.16.1:55708] AH01998: Connection closed to child 195 with abortive shutdown (server localhost:443)
+[Sat Oct 10 08:41:11.381459 2026] [ssl:info] [pid 17432:tid 17474] [client 172.24.16.1:50770] AH01964: Connection to child 261 established (server localhost:443)
+[Sat Oct 10 08:41:11.383598 2026] [wsgi:error] [pid 17430:tid 17436] [remote 172.24.16.1:50770] mod_wsgi (pid=17430): Target WSGI script '/home/norbeey/hello-web/src/hello_web/main.py' does not contain WSGI application 'application'.
+[Sat Oct 10 08:45:27.396021 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Shutdown requested 'myapp'.
+[Sat Oct 10 08:45:27.396431 2026] [wsgi:debug] [pid 17430:tid 17436] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 0 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396444 2026] [wsgi:debug] [pid 17430:tid 17456] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 13 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396449 2026] [wsgi:debug] [pid 17430:tid 17452] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 11 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396479 2026] [wsgi:debug] [pid 17430:tid 17449] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 10 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396486 2026] [wsgi:debug] [pid 17430:tid 17454] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 12 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396489 2026] [wsgi:debug] [pid 17430:tid 17446] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 8 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396492 2026] [wsgi:debug] [pid 17430:tid 17444] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 7 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396498 2026] [wsgi:debug] [pid 17430:tid 17448] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 9 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396504 2026] [wsgi:debug] [pid 17430:tid 17442] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 6 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396510 2026] [wsgi:debug] [pid 17430:tid 17439] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 3 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396526 2026] [wsgi:debug] [pid 17430:tid 17438] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 2 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396527 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Stopping process 'myapp'.
+[Sat Oct 10 08:45:27.396530 2026] [wsgi:debug] [pid 17430:tid 17440] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 4 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396532 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Destroying interpreters.
+[Sat Oct 10 08:45:27.396536 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Destroy interpreter 'localhost:8443|'.
+[Sat Oct 10 08:45:27.396536 2026] [wsgi:debug] [pid 17430:tid 17437] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 1 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396560 2026] [wsgi:debug] [pid 17430:tid 17441] src/server/mod_wsgi.c(9161): mod_wsgi (pid=17430): Exiting thread 5 in daemon process 'myapp'.
+[Sat Oct 10 08:45:27.396573 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): End interpreter 'localhost:8443|'.
+[Sat Oct 10 08:45:27.434231 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Cleanup interpreter ''.
+[Sat Oct 10 08:45:27.434284 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Terminating Python.
+[Sat Oct 10 08:45:27.438325 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Python has shutdown.
+[Sat Oct 10 08:45:27.438353 2026] [wsgi:info] [pid 17430:tid 17430] mod_wsgi (pid=17430): Exiting process 'myapp'.
+[Sat Oct 10 08:45:27.444994 2026] [ssl:warn] [pid 14643:tid 14643] AH01909: localhost:443:0 server certificate does NOT include an ID which matches the server name
