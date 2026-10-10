@@ -35,7 +35,11 @@ button {
   justify-self: start; padding: 0.6rem 1.5rem; border: 0; border-radius: 0.6rem;
   font: inherit; font-weight: 600; color: white; background: var(--gradient); cursor: pointer;
 }
-.errors { margin: 0; padding: 0.75rem 1rem 0.75rem 2rem; border-radius: 0.6rem; color: #991b1b; background: #fee2e2; }
+button:disabled { opacity: 0.5; cursor: not-allowed; }
+.errors, .notice { margin: 0; padding: 0.75rem 1rem; border-radius: 0.6rem; }
+ul.errors { padding-left: 2rem; }
+.errors { color: #991b1b; background: #fee2e2; }
+.notice { color: #166534; background: #dcfce7; }
 
 .entries { display: grid; gap: 0.75rem; }
 .entry { padding: 1rem 1.25rem; border-radius: 0.9rem; background: color-mix(in srgb, var(--accent) 10%, Canvas); }

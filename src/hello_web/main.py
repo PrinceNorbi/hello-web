@@ -15,9 +15,10 @@ app.mount("/static", StaticFiles(directory=BASE_DIR / "static"), name="static")
 # Jinja2Templates autoescapes .html templates, so user text is always rendered inert.
 templates = Jinja2Templates(directory=BASE_DIR / "templates")
 
-# Our pages need no JavaScript, so forbid all scripts as a second line of defense against XSS.
+# Only our own static files may run as scripts; inline and injected scripts are blocked as a second
+# line of defense against XSS.
 CSP = (
-    "default-src 'none'; style-src 'self'; img-src 'self'; "
+    "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self'; "
     "form-action 'self'; frame-ancestors 'none'; base-uri 'none'"
 )
 
@@ -38,10 +39,13 @@ def index(request: Request):
     return templates.TemplateResponse(request, "index.html")
 
 
-def render_guestbook(request: Request, *, errors=(), name="", message="", status_code=200):
+def render_guestbook(
+    request: Request, *, errors=(), retry_after=0, name="", message="", status_code=200
+):
     context = {
         "entries": guestbook.list_entries(),
         "errors": errors,
+        "retry_after": retry_after,
         "name": name,
         "message": message,
         "name_max": guestbook.NAME_MAX,
@@ -67,7 +71,16 @@ def sign_guestbook(
     name, message, errors = guestbook.validate(name, message)
     if errors:
         return render_guestbook(request, errors=errors, name=name, message=message, status_code=422)
-    guestbook.add_entry(name, message)
+    # Behind a reverse proxy, uvicorn derives the client address from X-Forwarded-For only when the
+    # proxy's IP is listed in FORWARDED_ALLOW_IPS, so clients cannot spoof it.
+    client = request.client.host if request.client else ""
+    retry_after = guestbook.add_entry(client, name, message)
+    if retry_after:
+        response = render_guestbook(
+            request, retry_after=retry_after, name=name, message=message, status_code=429
+        )
+        response.headers["Retry-After"] = str(retry_after)
+        return response
     return RedirectResponse("/guestbook", status_code=303)
 
 

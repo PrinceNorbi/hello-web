@@ -1,11 +1,18 @@
 {% extends "base.html" %}
 {% block title %}Guestbook{% endblock %}
 {% block main_class %}wide{% endblock %}
+{% block head %}<script src="/static/guestbook.js" defer></script>{% endblock %}
 {% block content %}
 <h1>Guestbook ✍️</h1>
 <p class="muted"><a href="/">&larr; Home</a></p>
 
 <form method="post" action="/guestbook">
+  {% if retry_after %}
+  <p class="errors" role="alert" id="rate-limit" data-retry-after="{{ retry_after }}">
+    You've reached the limit of one post per minute. You can post again in
+    <strong class="countdown">{{ retry_after }} second{{ "s" if retry_after != 1 }}</strong>.
+  </p>
+  {% endif %}
   {% if errors %}
   <ul class="errors" role="alert">
     {% for error in errors %}<li>{{ error }}</li>{% endfor %}
